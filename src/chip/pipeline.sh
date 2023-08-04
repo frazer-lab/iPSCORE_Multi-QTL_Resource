@@ -41,7 +41,7 @@ mkdir ${out_dir} ${out_dir}/detect_adapters ${out_dir}/qc
 if [ $call_peaks == F ]
 then
 
-    printf "\n\n1. ======== Pre-align processing =========\n\n"
+    echo "Trim and qc.."
     if [ ! -f ${out_dir}/detect_adapters/reads.1.fastq ] && [ ! -f ${out_dir}/detect_adapters/reads.2.fastq ]
     then
         cmd="sh ${script_dir}/pre-align.sh $id $fq_dir $out_dir"
@@ -50,16 +50,16 @@ then
         echo Pre-align already done. Skipping.
     fi
 
-    printf "\n\n2. ======== Align =========\n\n"
+    echo "Align.."
     cmd="sh ${script_dir}/align.sh $id $out_dir"
     echo $cmd >& 2; eval $cmd
 
-    printf "\n\n3. ======== Filter reads =========\n\n"
+    echo "Filter reads.."
     cmd="sh ${script_dir}/filter.sh $id $out_dir"
     echo $cmd >& 2; eval $cmd
 else
     
-    printf "\n\n4. ======== Call peaks =========\n\n"
+    echo "Call peaks.."
     cmd="sh ${script_dir}/peaks.sh $id $input"
     echo $cmd >& 2; eval $cmd
 fi

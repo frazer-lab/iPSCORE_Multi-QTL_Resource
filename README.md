@@ -17,11 +17,11 @@ Contains scripts for:
 3. QTL mapping and conditional analysis
 4. P-value multiple correction
 
-## RNA-seq pipeline
-
-## ATAC-seq pipeline
-
-## ChIP-seq pipeline
+## Raw data processing
+Contains scripts for processing raw data from:
+1. ATAC-seq
+2. ChIP-seq
+3. RNA-seq
 
 ## Figures
 

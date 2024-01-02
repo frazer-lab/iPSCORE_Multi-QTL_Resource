@@ -26,3 +26,6 @@ Contains scripts for processing raw data from:
 ## Figures
 Contains scripts for generating figures in the paper
 
+## Supplemental Tables
+Contains scripts for generating supplemental tables in the paper
+

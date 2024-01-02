@@ -24,5 +24,5 @@ Contains scripts for processing raw data from:
 3. RNA-seq
 
 ## Figures
-Contains jupyter notebooks and scripts for generating figures in the paper
+Contains scripts for generating figures in the paper
 

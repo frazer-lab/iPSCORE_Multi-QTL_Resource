@@ -23,6 +23,7 @@ source activate encode-atac
 
 date >& 2; date >> $log
 
+# 1. Call peaks
 tag=${out_dir}/Aligned.sorted.filt.nodup.nomito.tn5.tagAlign.gz
 cmd="macs2 callpeak \
 -t $tag \
@@ -34,4 +35,13 @@ cmd="macs2 callpeak \
 --extsize $smooth_window \
 --nomodel -B --SPMR --keep-dup all --call-summits"
 echo $cmd >& 2; echo $cmd >> $log; eval $cmd; date >& 2
+
+# 2. Remove blacklist
+blacklist=/reference/public/ENCODE/hg38-blacklist.v2.bed
+prefix=${out_dir}/peaks/narrow_tn5_tagAlign
+filtered_peak=${prefix}_peaks_noblacklist.narrowPeak
+bedtools intersect -v -a ${prefix}_peaks.narrowPeak -b ${blacklist} | awk 'BEGIN{OFS="\t"} {if ($5>1000) $5=1000; print $0}' | grep -P 'chr[\dXY]+[ \t]' > ${filtered_peak}
+cut -f1,2,3 ${filtered_peak} | sort -u | wc -l > ${prefix}_peaks_noblacklist.narrowPeak.npeaks.txt
+
+
 

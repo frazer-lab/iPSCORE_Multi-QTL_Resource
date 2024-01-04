@@ -120,7 +120,7 @@ cmd="samtools flagstat -@ 8 ${out_dir}/Aligned.sorted.mito.bam > ${out_dir}/qc/A
 echo $cmd >& 2; echo $cmd >> $log; eval $cmd; date >& 2
 
 # 13. Clean
-cmd="rm ${out_dir}/Aligned.sorted.mito.bam"
+cmd="rm ${out_dir}/Aligned.sorted.mito.bam ${out_dir}/Aligned.sorted.non_mito.bam "
 echo $cmd >& 2; echo $cmd >> $log; eval $cmd; date >& 2
 
 ###### Read filtering

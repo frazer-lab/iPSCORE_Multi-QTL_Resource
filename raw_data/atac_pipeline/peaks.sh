@@ -22,7 +22,16 @@ source /frazer01/home/jennifer/.bash_profile
 source activate encode-atac
 
 date >& 2; date >> $log
+
 tag=${out_dir}/Aligned.sorted.filt.nodup.nomito.tn5.tagAlign.gz
-cmd="macs2 callpeak -t $tag -f BEDPE -n ${prefix}_tn5_tagAlign -g $gensz -q $pval_thresh --shift $shiftsize --extsize $smooth_window --nomodel -B --SPMR --keep-dup all --call-summits"
+cmd="macs2 callpeak \
+-t $tag \
+-f BEDPE \
+-n ${prefix}_tn5_tagAlign \
+-g $gensz \
+-q $pval_thresh \
+--shift $shiftsize \
+--extsize $smooth_window \
+--nomodel -B --SPMR --keep-dup all --call-summits"
 echo $cmd >& 2; echo $cmd >> $log; eval $cmd; date >& 2
 

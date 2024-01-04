@@ -180,7 +180,7 @@ cmd="samtools idxstats ${out_dir}/Aligned.sorted.filt.nodup.bam | cut -f 1 | gre
 echo $cmd >& 2; echo $cmd >> $log; eval $cmd; date >& 2
 
 # 26. Index
-cmd="samtools index -@ 8 ${out_dir}/Aligned.sorted.filt.nodup.bam"
+cmd="samtools index -@ 8 ${out_dir}/Aligned.sorted.filt.nodup.nomito.bam"
 echo $cmd >& 2; echo $cmd >> $log; eval $cmd; date >& 2
 
 

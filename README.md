@@ -1,5 +1,7 @@
 # iPSCORE QTL Resource
 
+![Alt text](image link)
+
 ## Analysis
 Contains code for all analyses conducted in the study
 1. Characterization of ATAC-seq 

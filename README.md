@@ -26,6 +26,8 @@ Contains code for all analyses conducted in the study
 5. QTL-QTL colocalization
 6. QTL networks
 7. GWAS-QTL colocalization
+8. GWAS-QTL processing
+9. GWAS independent loci
 
 ## QTL pipeline and analysis
 Contains scripts for:

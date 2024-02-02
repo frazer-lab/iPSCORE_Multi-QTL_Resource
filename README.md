@@ -31,10 +31,12 @@ Contains code for all analyses conducted in the study
 
 ## QTL pipeline and analysis
 Contains scripts for:
-1. Processing and quantile-normalization of RNA-seq and ATAC-seq
-2. PEER optimization
-3. QTL mapping and conditional analysis
-4. P-value multiple correction
+1. Filtering WGS variants
+2. Genotype PCA
+3. Processing and quantile-normalization of RNA-seq and ATAC-seq
+4. PEER optimization
+5. QTL mapping and conditional analysis
+6. P-value multiple correction
 
 ## Figures
 Contains scripts for generating figures in the paper

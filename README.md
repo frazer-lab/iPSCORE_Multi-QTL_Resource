@@ -21,13 +21,14 @@ Contains scripts for processing raw data from:
 Contains code for all analyses conducted in the study
 1. Characterization of ATAC-seq 
 2. Characterization of ChIP-seq
-3. LD Score Regression 
-4. QTL fine-mapping
-5. QTL-QTL colocalization
-6. QTL networks
-7. GWAS-QTL colocalization
-8. GWAS-QTL processing
-9. GWAS independent loci
+3. LD Score Regression
+4. Fetal-unique QTLs
+5. QTL fine-mapping
+6. QTL-QTL colocalization
+7. QTL networks
+8. GWAS-QTL colocalization
+9. GWAS-QTL processing
+10. GWAS independent loci
 
 ## QTL pipeline and analysis
 Contains scripts for:

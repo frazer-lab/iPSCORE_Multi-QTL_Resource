@@ -1,4 +1,4 @@
-# iPSCORE QTL Resource
+# iPSCORE Multi-QTL Resource
 
 ![Alt text](ipscore_resource.png)
 

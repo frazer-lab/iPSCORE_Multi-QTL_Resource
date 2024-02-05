@@ -30,7 +30,7 @@ Contains code for all analyses conducted in the study
 9. GWAS-QTL processing
 10. GWAS independent loci
 
-## QTL pipeline and analysis
+## QTL Mapping
 Contains scripts for:
 1. Filtering WGS variants
 2. Genotype PCA

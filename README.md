@@ -28,18 +28,11 @@ Contains scripts for:
 
 ## Analysis
 Contains code for all analyses conducted in the study
-1. Characterization of ATAC-seq (Tim)
-2. Characterization of ChIP-seq (Tim)
-3. LD Score Regression (Jennifer)
-4. Characterization of QTLs (Tim)
-5. Identification of Fetal-unique QTLs (Jennifer)
-6. Fetal-unique QTL Characterization (Tim)
-7. QTL fine-mapping (Tim)
-8. QTL-QTL colocalization (Tim)
-9. QTL networks (Tim)
-10. GWAS-QTL colocalization (Jennifer)
-11. GWAS-QTL processing (Jennifer)
-12. GWAS independent loci (Jennifer)
+1. Epigenome Characterization (Tim - shared peaks, TF enrichment; Jennifer - LDscore regression)
+2. Characterization of QTLs (Tim - QTL finemapping, distance)
+3. Fetal-unique QTLs (Jennifer - identification, Tim - characterization)
+4. QTL networks (Tim - QTL-QTL colocalization, networks)
+5. GWAS-QTL (Jennifer - GWAS loci identification, GWAS-QTL colocalization)
 
 ## Figures and Source Data
 Contains scripts for generating figures in the paper

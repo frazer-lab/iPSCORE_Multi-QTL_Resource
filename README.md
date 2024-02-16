@@ -25,7 +25,7 @@ Contains code for all analyses conducted in the study
 5. Characterization of QTLs (Tim)
 6. Fetal-unique QTLs (Jennifer)
 7. QTL fine-mapping (Tim)
-8. QTL-QTL colocalization
+8. QTL-QTL colocalization (Tim)
 9. QTL networks (Tim)
 10. GWAS-QTL colocalization (Jennifer)
 11. GWAS-QTL processing (Jennifer)

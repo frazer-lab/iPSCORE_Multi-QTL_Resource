@@ -23,13 +23,14 @@ Contains code for all analyses conducted in the study
 2. Characterization of ChIP-seq (Tim)
 4. LD Score Regression (Jennifer)
 5. Characterization of QTLs (Tim)
-6. Fetal-unique QTLs (Jennifer)
-7. QTL fine-mapping (Tim)
-8. QTL-QTL colocalization (Tim)
-9. QTL networks (Tim)
-10. GWAS-QTL colocalization (Jennifer)
-11. GWAS-QTL processing (Jennifer)
-12. GWAS independent loci (Jennifer)
+6. Identification of Fetal-unique QTLs (Jennifer)
+7. Fetal-unique QTL Characterization (Tim)
+8. QTL fine-mapping (Tim)
+9. QTL-QTL colocalization (Tim)
+10. QTL networks (Tim)
+11. GWAS-QTL colocalization (Jennifer)
+12. GWAS-QTL processing (Jennifer)
+13. GWAS independent loci (Jennifer)
 
 
 ## QTL Mapping

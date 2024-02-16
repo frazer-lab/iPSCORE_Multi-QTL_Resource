@@ -13,31 +13,31 @@ Kelly A. Frazer (PI), kellyfrazer27@gmail.com
 
 ## Raw data processing
 Contains scripts for processing raw data from:
-1. ATAC-seq
-2. ChIP-seq
-3. RNA-seq
+1. ATAC-seq (Jennifer)
+2. ChIP-seq (Jennifer)
+3. RNA-seq (Jennifer)
    
 ## Analysis
 Contains code for all analyses conducted in the study
-1. Characterization of ATAC-seq 
-2. Characterization of ChIP-seq
-3. LD Score Regression
-4. Fetal-unique QTLs
-5. QTL fine-mapping
+1. Characterization of ATAC-seq (Tim)
+2. Characterization of ChIP-seq (Tim)
+3. LD Score Regression (Jennifer)
+4. Fetal-unique QTLs (Jennifer)
+5. QTL fine-mapping (Tim)
 6. QTL-QTL colocalization
-7. QTL networks
-8. GWAS-QTL colocalization
-9. GWAS-QTL processing
-10. GWAS independent loci
+7. QTL networks (Tim)
+8. GWAS-QTL colocalization (Jennifer)
+9. GWAS-QTL processing (Jennifer)
+10. GWAS independent loci (Jennifer)
 
 ## QTL Mapping
 Contains scripts for:
-1. Filtering WGS variants
-2. Genotype PCA
-3. Processing and quantile-normalization of RNA-seq and ATAC-seq
-4. PEER optimization
-5. QTL mapping and conditional analysis
-6. P-value multiple correction
+1. Filtering WGS variants (Jennifer)
+2. Genotype PCA (Jennifer)
+3. Processing and quantile-normalization of RNA-seq and ATAC-seq (Jennifer)
+4. PEER optimization (Jennifer)
+5. QTL mapping and conditional analysis (Jennifer)
+6. P-value multiple correction (Jennifer)
 
 ## Figures
 Contains scripts for generating figures in the paper

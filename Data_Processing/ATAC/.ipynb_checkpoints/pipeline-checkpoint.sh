@@ -11,14 +11,14 @@
 source /frazer01/home/jennifer/.bash_profile
 source activate encode-chip
 
-if [ ! -d scratch ]; then mkdir scratch; fi
-
 script_dir=/projects/CARDIPS/pipeline/ChIP-Seq/encode_script
 pipe_dir=/projects/CARDIPS/pipeline/ChIP-Seq/sample_hg38
 data_dir=/projects/CARDIPS/data/ChIP-Seq/sample
-sample_list=$1 # list of sample uuids
-call_peaks=$2 # true/false for whether you want to call peaks
-sample_input_list=$3 # column 1: input sample uuids, column 2: chip sample uuids
+
+sample_list=$1 # List of samples
+call_peaks=$2 # True /False to call peaks
+sample_input_list=$3 # first column = input id, second column = chip id
+cell=$4 # ipsc, input, or cvpc
 
 if [ $call_peaks == F ]
 then
@@ -40,7 +40,7 @@ echo "Fastq directory: $fq_dir" >& 2
 # get genome reference
 # (already done, do not re-run)
 # wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
-# wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.chrom.
+# wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.chrom.sizes
 # bwa=/software/bwa-0.7.17/bwa
 # ${bwa} index hg38.fa.gz                    
 
@@ -61,25 +61,25 @@ then
     cmd="sh ${script_dir}/filter.sh $id $out_dir"
     echo $cmd >& 2; eval $cmd
     
-    # 4. Create tagAlign for merged ChIP bam
-    bam=${out_dir}/Aligned.filt.srt.nodup.bam
-    cmd="sh ${script_dir}/tagAlign.sh ${bam}"
+    # 4. Create tagAlign
+    cmd="sh ${script_dir}/tagAlign.sh ${out_dir}/Aligned.filt.srt.nodup.bam"
+    echo $cmd >& 2; eval $cmd
+    
+    # 5. Run cross-correlation
+    cmd="sh ${script_dir}/cross_correlation.sh sample_hg38/${id}"
     echo $cmd >& 2; eval $cmd
 
-    # 5. Cross-correlation
-    cmd="sh ${script_dir}/cross_correlation_ipsc.sh ${out_dir}"
+    # 6. Run plink
+    cmd="sh ${script_dir}/identity.sh sample_hg38/${id}"
     echo $cmd >& 2; eval $cmd
 
-    # 6. Sample identify
-    cmd="sh ${script_dir}/identity.sh ${out_dir}"
-    echo $cmd >& 2; eval $cmd
-        
-    # 7. Library complexity
-    cmd="sh ${script_dir}/library_complexity.sh ${out_dir}"
+    # 7. Run Library Complexity
+    cmd="sh ${script_dir}/library_complexity.sh sample_hg38/${id}"
     echo $cmd >& 2; eval $cmd
     
 else
 
+    # 8. Call peaks
     sample_dir=${pipe_dir}/${id}
     input_dir=${pipe_dir}/${input}
     
@@ -88,7 +88,6 @@ else
     log_out=${sample_dir}/logs/peaks_counts.out
     log_err=${sample_dir}/logs/peaks_counts.err
     
-    # 1. Call peaks 
     cmd="qsub -N peaks -V -cwd -pe smp 4 -o $log_out -e $log_err ${script_dir}/peaks.sh ${sample_dir} ${input_dir}"
     echo $cmd >& 2; eval $cmd
 fi

@@ -2,81 +2,56 @@
 
 #$ -N peaks
 #$ -V -cwd
-#$ -o logs/peaks
-#$ -e logs/peaks
 #$ -pe smp 4
 
-source /frazer01/home/jennifer/.bash_profile
-source activate encode-chip
+date >& 2 
 
 set -e
 
-sample_dir=$1
-input_dir=$2
-log_file=${sample_dir}/macs2.out
+out_dir=$1
+log=$2
+prefix=${out_dir}/peaks/narrow
+pval_thresh=0.01 # default in ENCODE
+gensz=hs # human genome size
+smooth_window=$3 #150
+shiftsize=$4 #75
 
-if [ -f ${sample_dir}/peaks_q0.01/broad_tagAlign_peaks.broadPeak.counts ]
-then 
-    echo "${sample_dir}/peaks_q0.01/broad_tagAlign_peaks.broadPeak.counts already exists"
-    exit 1
-fi 
+#smooth_window=150 # default in ENCODE
+#shiftsize=$(( -$smooth_window/2 ))
 
-if [ ! -d ${sample_dir}/peaks_q0.01 ]; then mkdir ${sample_dir}/peaks_q0.01; fi
+script_dir=/projects/PPC/pipeline/ATAC-Seq/work/2023_0720/scripts
 
-# 0. Get fragment length
-cc_qc_log=${sample_dir}/Aligned.merged.subsampled.tagAlign.cc.qc
-echo $cc_qc_log
-fraglen=`cut -f3 $cc_qc_log`
+source /frazer01/home/jennifer/.bash_profile
+source activate encode-atac
 
-# 0. Setup input
-if [ ! -f ${sample_dir}/Aligned.merged.bam ]
-then
-    bam_chip=${sample_dir}/Aligned.filt.srt.nodup.bam
-    bed_chip=${sample_dir}/Aligned.filt.srt.nodup.tagAlign
-else
-    bam_chip=${sample_dir}/Aligned.merged.bam
-    bed_chip=${sample_dir}/Aligned.merged.tagAlign
+if [ ! -d ${out_dir}/peaks ]; then mkdir ${out_dir}/peaks; fi
+
+# 1. Call peaks
+if [ ! -f ${out_dir}/peaks/narrow_tn5_tagAlign_peaks.narrowPeak ]; then
+    tag=${out_dir}/Aligned.sorted.filt.nodup.nomito.tn5.tagAlign.gz
+    cmd="macs2 callpeak -t $tag -f BEDPE -n ${prefix}_tn5_tagAlign -g $gensz -q $pval_thresh --shift $shiftsize  --extsize $smooth_window --nomodel -B --SPMR --keep-dup all --call-summits"
+    echo $cmd >& 2; echo $cmd >> $log; eval $cmd
 fi
-
-bed_input=${input_dir}/Aligned.filt.srt.nodup.tagAlign
-
+   
+# 2. Remove blacklist
 BLACKLIST=/reference/public/ENCODE/hg38-blacklist.v2.bed
+arr=( ${out_dir}/peaks/narrow_bam ${out_dir}/peaks/narrow_tn5_tagAlign )
+for prefix in ${arr[@]}; do
+    FILTERED_PEAK=${prefix}_peaks_noblacklist.narrowPeak
+    bedtools intersect -v -a ${prefix}_peaks.narrowPeak -b ${BLACKLIST} | awk 'BEGIN{OFS="\t"} {if ($5>1000) $5=1000; print $0}' | grep -P 'chr[\dXY]+[ \t]'   > ${FILTERED_PEAK}
+    cut -f1,2,3 ${FILTERED_PEAK} | sort -u | wc -l > ${prefix}_peaks_noblacklist.narrowPeak.npeaks.txt
+done
 
-echo "Fragment length: $fraglen" >& 2
-echo "Sample directory:" $sample_dir >& 2
-echo "Input directory:" $input_dir >& 2 
-echo "Sample bed:" $bed_chip >& 2
-echo "Input bed:" $bed_input >& 2 
-echo "Sample bam:" $bam_chip >& 2
+# 3. Feature counts
+bam=${out_dir}/Aligned.sorted.filt.nodup.nomito.bam
+peak=${out_dir}/peaks/narrow_tn5_tagAlign_peaks_noblacklist.narrowPeak
 
-# 1. Narrow peaks
-prefix=${sample_dir}/peaks_q0.01/narrow_tagAlign
-cmd="macs2 callpeak -t ${bed_chip}.gz -c ${bed_input}.gz -g 3.0e9 -n $prefix -q 1e-2 --nomodel --shift 0 --extsize $fraglen --keep-dup all -B --SPMR --call-summits"
-echo $cmd >> $log; echo $cmd >& 2; eval $cmd
+cmd="cat $peak | ${script_dir}/peaks2saf.pl > ${out_dir}/saf"
+echo $cmd >& 2; echo $cmd >> $log; eval $cmd
 
-# Remove blacklist peaks
-FILTERED_PEAK=${prefix}_peaks_noblacklist.narrowPeak
-bedtools intersect -v -a ${prefix}_peaks.narrowPeak -b ${BLACKLIST} | grep -P 'chr[\dXY]+[ \t]'   > ${FILTERED_PEAK}
+cmd="featureCounts -p --countReadPairs -B -C -T 4 -F SAF -a ${out_dir}/saf -o ${peak}.counts ${bam}"
+echo $cmd >& 2; echo $cmd >> $log; eval $cmd
 
-# Run featureCounts
-cmd="awk -F \"\t\" '{print \$4,\$1,\$2,\$3,\$6}' ${prefix}_peaks_noblacklist.narrowPeak | tr ' ' '\\t' > ${sample_dir}/narrow_saf"
-echo $cmd >> $log; echo $cmd >& 2; eval $cmd
-
-cmd="featureCounts -p --countReadPairs -B -C -T 4 -F SAF -a ${sample_dir}/narrow_saf -o ${prefix}_peaks_noblacklist.narrowPeak.counts $bam_chip"
-echo $cmd >> $log; echo $cmd >& 2; eval $cmd
-
-# 2. Broad peaks
-prefix=${sample_dir}/peaks_q0.01/broad_tagAlign
-cmd="macs2 callpeak -t ${bed_chip}.gz -c ${bed_input}.gz -g 3.0e9 -n $prefix -q 1e-2 --nomodel --shift 0 --extsize $fraglen --keep-dup all -B --SPMR --broad"
-echo $cmd >> $log; echo $cmd >& 2; eval $cmd
-
-# Remove blacklist peaks (ended up not being used)
-FILTERED_PEAK=${prefix}_peaks_noblacklist.broadPeak
-bedtools intersect -v -a ${prefix}_peaks.broadPeak -b ${BLACKLIST} | grep -P 'chr[\dXY]+[ \t]'   > ${FILTERED_PEAK}
-
-# Run featureCounts
-cmd="awk -F \"\t\" '{print \$4,\$1,\$2,\$3,\$6}' ${prefix}_peaks_noblacklist.broadPeak | tr ' ' '\\t' > ${sample_dir}/broad_saf"
-echo $cmd >> $log; echo $cmd >& 2; eval $cmd
-
-cmd="featureCounts -p --countReadPairs -B -C -T 4 -F SAF -a ${sample_dir}/broad_saf -o ${prefix}_peaks_noblacklist.broadPeak.counts $bam_chip"
-echo $cmd >> $log; echo $cmd >& 2; eval $cmd
+# 4. Clean
+cmd="rm ${out_dir}/saf"
+echo $cmd >& 2; echo $cmd >> $log; eval $cmd

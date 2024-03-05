@@ -61,21 +61,37 @@ then
     cmd="sh ${script_dir}/filter.sh $id $out_dir"
     echo $cmd >& 2; eval $cmd
     
-    # 4. Create tagAlign
-    cmd="sh ${script_dir}/tagAlign.sh ${out_dir}/Aligned.filt.srt.nodup.bam"
-    echo $cmd >& 2; eval $cmd
+    # 4. Create tagAlign for merged ChIP bam
+    if [ $cell == "ipsc" ] || [ $cell == "input" ]
+    then
+        cmd="sh ${script_dir}/tagAlign.sh ${out_dir}/Aligned.filt.srt.nodup.bam"
+        echo $cmd >& 2; eval $cmd
+    else
+        cmd="sh ${script_dir}/tagAlign.sh ${out_dir}/Aligned.merged.bam"
+        echo $cmd >& 2; eval $cmd
+    fi
     
-    # 5. Run cross-correlation
-    cmd="sh ${script_dir}/cross_correlation.sh sample_hg38/${id}"
-    echo $cmd >& 2; eval $cmd
+    if [ $cell == "ipsc" ] || [ $cell == "cvpc" ]
+    then
+    
+        # 5. Run CC
+        if [ $cell == "ipsc" ]
+        then
+            cmd="sh ${script_dir}/cross_correlation_ipsc.sh sample_hg38/${id}"
+            echo $cmd >& 2; eval $cmd
+        else
+            cmd="sh ${script_dir}/cross_correlation.sh sample_hg38/${id}"
+            echo $cmd >& 2; eval $cmd
+        fi
 
-    # 6. Run plink
-    cmd="sh ${script_dir}/identity.sh sample_hg38/${id}"
-    echo $cmd >& 2; eval $cmd
-
-    # 7. Run Library Complexity
-    cmd="sh ${script_dir}/library_complexity.sh sample_hg38/${id}"
-    echo $cmd >& 2; eval $cmd
+        # 6. Run plink
+        cmd="sh ${script_dir}/identity.sh sample_hg38/${id}"
+        echo $cmd >& 2; eval $cmd
+        
+        # 7. Run Library Complexity
+        cmd="sh ${script_dir}/library_complexity.sh sample_hg38/${id}"
+        echo $cmd >& 2; eval $cmd
+    fi
     
 else
 

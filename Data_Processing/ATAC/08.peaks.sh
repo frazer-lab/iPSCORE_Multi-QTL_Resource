@@ -6,6 +6,9 @@
 
 date >& 2 
 
+source /frazer01/home/jennifer/.bash_profile
+source activate encode-atac
+
 set -e
 
 out_dir=$1
@@ -20,9 +23,6 @@ shiftsize=$4 #75
 #shiftsize=$(( -$smooth_window/2 ))
 
 script_dir=/projects/PPC/pipeline/ATAC-Seq/work/2023_0720/scripts
-
-source /frazer01/home/jennifer/.bash_profile
-source activate encode-atac
 
 if [ ! -d ${out_dir}/peaks ]; then mkdir ${out_dir}/peaks; fi
 

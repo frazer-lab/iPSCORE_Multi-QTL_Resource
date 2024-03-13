@@ -1,0 +1,1 @@
+/projects/CARDIPS/analysis/epigenome_resource/to_github/QTL_Mapping/01.Prepare_Kinship.sh

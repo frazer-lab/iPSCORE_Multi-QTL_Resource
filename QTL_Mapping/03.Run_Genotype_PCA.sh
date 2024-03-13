@@ -1,0 +1,1 @@
+/projects/CARDIPS/analysis/epigenome_resource/to_github/QTL_Mapping/03.Run_Genotype_PCA.sh

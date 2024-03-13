@@ -21,7 +21,7 @@ echo map_file=$map_file
 echo out_dir=$out_dir
 echo log=$log
 
-# 1. concatenate 
+# 1. concatenate fastqs from multiple sequencing runs
 date >& 2
 
 premerge_uuids=(`grep $merge_uuid $map_file | cut -f1`)

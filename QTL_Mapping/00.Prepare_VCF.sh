@@ -1,1 +1,0 @@
-/projects/CARDIPS/analysis/epigenome_resource/to_github/QTL_Mapping/00.Prepare_VCF.sh

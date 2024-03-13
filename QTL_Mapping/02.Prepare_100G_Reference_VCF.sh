@@ -1,1 +1,0 @@
-/projects/CARDIPS/analysis/epigenome_resource/to_github/QTL_Mapping/02.Prepare_100G_Reference_VCF.sh

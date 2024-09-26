@@ -1,0 +1,1 @@
+../../analyses/jennifer/ipscore_unique_qtls/mashr/scripts/run.make_input_per_gene.sh

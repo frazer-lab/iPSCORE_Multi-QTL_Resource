@@ -26,19 +26,15 @@ Contains scripts for:
 5. QTL mapping and conditional analysis
 6. P-value multiple correction
 
-## Analysis
+## Analyses
 Contains code for all analyses conducted in the study
-1. Epigenome Characterization 
-2. Characterization of QTLs 
-3. Fetal-specific eQTLs 
-4. QTL Modules 
-5. GWAS-QTL
+1. ATAC and ChIP Peak Characterization 
+2. QTL Overview 
+3. EDev-specific eQTLs 
+4. Complex QTL Discovery 
+5. GWAS Colocalization
 
 ## Figures and Source Data
-Contains scripts for generating figures in the paper
+Contains scripts for generating main and supplemental figures in the paper
 
-## Supplemental Tables
-Contains scripts for generating supplemental tables in the paper
-
-## Previous iPSCORE Papers
 

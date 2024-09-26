@@ -1,0 +1,1 @@
+/projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_unique_qtls/mashr/scripts/make_input_per_gene.R

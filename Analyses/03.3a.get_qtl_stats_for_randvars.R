@@ -1,0 +1,1 @@
+/projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_unique_qtls/mashr/scripts/get_qtl_stats_for_randvars.R

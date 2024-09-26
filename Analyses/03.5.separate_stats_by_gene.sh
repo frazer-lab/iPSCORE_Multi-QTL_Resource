@@ -1,0 +1,1 @@
+../../analyses/jennifer/ipscore_unique_qtls/mashr/scripts/separate_stats_by_gene.sh

@@ -1,0 +1,1 @@
+../../analyses/jennifer/ipscore_unique_qtls/mashr/scripts/run.mashr_run.sh

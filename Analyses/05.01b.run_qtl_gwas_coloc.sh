@@ -1,0 +1,1 @@
+/projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/notebooks/08.03.run_qtl_gwas_coloc.sh

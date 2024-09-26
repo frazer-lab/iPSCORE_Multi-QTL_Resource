@@ -1,0 +1,1 @@
+/projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_unique_qtls/mashr/scripts/run.mashr_fit.sh

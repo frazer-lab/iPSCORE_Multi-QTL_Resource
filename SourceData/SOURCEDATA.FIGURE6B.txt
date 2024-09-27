@@ -1,0 +1,40 @@
+Trait	Tissue	Freq
+Birth Weight	CVPC	3
+Body Mass Index	CVPC	35
+Fasting Glucose	CVPC	4
+HDL Cholesterol	CVPC	31
+Angina Pectoris	CVPC	2
+Myocardial Infarction	CVPC	1
+Heart Disease	CVPC	2
+Atrial Fibrillation	CVPC	11
+LDL Direct	CVPC	11
+Aging	CVPC	1
+Pulse Rate	CVPC	7
+QRS Duration	CVPC	4
+Type 2 Diabetes	CVPC	10
+Birth Weight	iPSC	5
+Body Mass Index	iPSC	33
+Fasting Glucose	iPSC	2
+HDL Cholesterol	iPSC	27
+Angina Pectoris	iPSC	2
+Myocardial Infarction	iPSC	2
+Heart Disease	iPSC	3
+Atrial Fibrillation	iPSC	1
+LDL Direct	iPSC	8
+Aging	iPSC	2
+Pulse Rate	iPSC	3
+QRS Duration	iPSC	0
+Type 2 Diabetes	iPSC	11
+Birth Weight	PPC	1
+Body Mass Index	PPC	21
+Fasting Glucose	PPC	2
+HDL Cholesterol	PPC	22
+Angina Pectoris	PPC	2
+Myocardial Infarction	PPC	1
+Heart Disease	PPC	1
+Atrial Fibrillation	PPC	1
+LDL Direct	PPC	6
+Aging	PPC	1
+Pulse Rate	PPC	5
+QRS Duration	PPC	0
+Type 2 Diabetes	PPC	12

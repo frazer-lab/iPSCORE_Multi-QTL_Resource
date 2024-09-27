@@ -1,0 +1,4 @@
+Specificity	No_eQTLs
+Adult	20539
+EDev	2207
+Shared	34618

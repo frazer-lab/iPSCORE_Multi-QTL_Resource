@@ -9,4 +9,4 @@ date=$2
 
 gene=`tail -n +$SGE_TASK_ID $genelist | head -1`
 
-Rscript /projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_unique_qtls/mashr/scripts/mashr_run.R --testname $gene --date $date
+Rscript /projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_unique_qtls/mashr/scripts/mashr_run.R --gene_id $gene --date $date

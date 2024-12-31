@@ -10,7 +10,7 @@ library(data.table)
 library(dplyr)
 library(optparse)
 
-option_list = list(make_option("--testname", type = "character", default = NA, help = "testname", metavar = "character"),
+option_list = list(make_option("--gene_id", type = "character", default = NA, help = "gene_id", metavar = "character"),
                    make_option("--date", type = "character", default = NA, help = "modelname", metavar = "character"))
 
 # parse arguments
@@ -18,7 +18,7 @@ opt_parser    = OptionParser(option_list = option_list)
 opt           = parse_args(opt_parser)
 
 # set arguments
-testname  = opt$testname
+gene_id   = opt$gene_id
 date      = opt$date
 
 # Add rownames function
@@ -33,8 +33,8 @@ dir = "/projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_u
 
 dir.create(paste(dir, date, "results", "by_gene", sep = "/"))
 
-input_datafile    = paste (dir, date, "input", "by_gene", paste(testname , "robj", sep = "."), sep = "/")
-results_outfile   = paste (dir, date, "results", "by_gene", paste(testname , "robj", sep = "."), sep = "/")
+input_datafile    = paste (dir, date, "input", "by_gene", paste(gene_id , "robj", sep = "."), sep = "/")
+results_outfile   = paste (dir, date, "results", "by_gene", paste(gene_id , "robj", sep = "."), sep = "/")
 model_outfile     = paste (dir, date, "results/mashr_model.robj", sep = "/")
 conditions_file   = paste (dir, date, "input", "conditions.txt", sep = "/")
 

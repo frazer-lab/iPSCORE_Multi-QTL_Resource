@@ -6,7 +6,7 @@ source("analyses/jennifer/notebooks/functions.R")
 set.seed(5366)
 
 option_list = list(make_option("--tissue", type = "character", default = NA, help = "tissue", metavar = "character"),
-                   make_option("--qtl_list", type = "character", default = NA, help = "datatype", metavar = "character"),
+                   make_option("--qtl_list", type = "character", default = NA, help = "table of SNP-eGenes to test", metavar = "character"),
                    make_option("--date", type = "character", default = NA, help = "date", metavar = "character"))
 
 # parse arguments

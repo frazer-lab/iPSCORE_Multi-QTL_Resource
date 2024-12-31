@@ -41,14 +41,14 @@ cut -f2 ${outdir}/pca/input/reference.to_pca.bim | sort -u > snps2.txt
 comm -12 snps1.txt snps2.txt > ${pca_dir}/input/intersect.snps
 rm snps1.txt snps2.txt ${pca_dir}/merge_list.txt
 
-# 4. Filter for those overlapping variants
+# 8. Filter for those overlapping variants
 cmd="plink --bfile ${pca_dir}/input/reference.to_pca --make-bed --extract ${pca_dir}/input/intersect.snps --out ${pca_dir}/input/reference.to_pca.filt"
 echo $cmd >> $log; echo $cmd; eval $cmd
 
 echo "${pca_dir}/input/reference.to_pca.filt" >> ${pca_dir}/merge_list.txt
 echo "${pca_dir}/input/ipscore.to_pca.renamed" >> ${pca_dir}/merge_list.txt
 
-# 5. Merge and run PCA on those SNPs
+# 9. Merge and run PCA on those SNPs
 plink --merge-list ${pca_dir}/merge_list.txt --make-bed --keep ${outdir}/pca/within_filt.txt --extract ${pca_dir}/input/intersect.snps --pca-cluster-names AFR EUR AMR EAS SAS --pca --within ${outdir}/pca/within_filt.txt --out ${pca_dir}/pca
 
 

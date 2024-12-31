@@ -89,11 +89,11 @@ model_list = list("m" = m, "Vhat" = Vhat)
 save(model_list, file = model_outfile)
 message(paste("Saved:", model_outfile))
 
-## This is the output for fitting the model
-#Opening #/projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_unique_qtls/mashr/input/mashr_input_random_all#.robj
+## Messages outputted from running this script (from an old run)
+#Opening #/projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_unique_qtls/mashr/input/mashr_input_random.robj
 #Loading objects:
 #  datalist
-#Opening #projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_unique_qtls/mashr/input/mash_input_strong_all.#obj
+#Opening #projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_unique_qtls/mashr/input/mash_input_strong.obj
 #Loading objects:
 # datalist
 #2024-06-25 17:22:12.815945
@@ -102,4 +102,4 @@ message(paste("Saved:", model_outfile))
 # - Fitting model with 2597 mixture components.
 # - Model fitting took 85417.81 seconds.
 #2024-06-27 00:07:46.404344
-#Saved: #/projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_unique_qtls/mashr/results/mashr_model_all.robj
+#Saved: #/projects/CARDIPS/analysis/epigenome_resource/analyses/jennifer/ipscore_unique_qtls/mashr/results/mashr_model.robj
